@@ -9,8 +9,9 @@
 <style>
   @font-face { font-family: "Cheltenham"; src: url("cheltenham.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
   @font-face { font-family: "Cheltenham"; src: url("cheltenham.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: "Imperial"; src: url("imperial-normal-500.ttf") format("truetype"); font-weight: 400 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: "Franklin"; src: url("franklin-normal-500.ttf") format("truetype"); font-weight: 400 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Imperial"; src: url("imperial-normal-500.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Karnak"; src: url("karnak-normal-400.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Franklin"; src: url("franklin-normal-500.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
 
   :root { --ink:#121212; --body:#363636; --grey:#727272; --line:#dfdfdf; --link:#326891; }
   * { box-sizing: border-box; }
@@ -20,18 +21,18 @@
   .serif { font-family:"Imperial", Georgia, serif; }
 
   /* Top bar */
-  .topbar { position:relative; height:81px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 24px; }
-  .topbar-left { display:flex; gap:30px; align-items:center; }
+  .topbar { position:relative; height:42px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 24px; }
+  .topbar-left { display:flex; gap:24px; align-items:center; }
   .logotype { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
-  .logotype img { display:block; height:50px; width:auto; max-width:60vw; }
+  .logotype img { display:block; height:24px; width:auto; max-width:60vw; }
   .topbar-right { display:flex; gap:16px; }
   .btn-dark { background:#121212; color:#fff; font-weight:700; font-size:15px; padding:0 26px; height:64px; border-radius:3px; display:flex; align-items:center; }
   .btn-light { background:#fff; color:#121212; font-weight:700; font-size:15px; padding:0 24px; height:64px; border:1px solid #121212; border-radius:3px; display:flex; align-items:center; }
-  .topbar .btn-dark, .topbar .btn-light { height:32px; font-size:14px; padding:0 14px; }
+  .topbar .btn-dark, .topbar .btn-light { height:28px; font-size:13px; padding:0 11px; }
 
   /* Sub nav */
-  .subnav { height:56px; border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 24px; position:relative; }
-  .subnav .t-logo { height:27px; width:auto; position:absolute; left:24px; top:50%; transform:translateY(-50%); }
+  .subnav { height:48px; border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 24px; position:relative; }
+  .subnav .t-logo { height:22px; width:auto; position:absolute; left:24px; top:50%; transform:translateY(-50%); }
   .subnav ul { list-style:none; margin:0 auto; padding:0 0 0 60px; display:flex; gap:22px; align-items:center; font-size:14px; white-space:nowrap; overflow-x:auto; max-width:100%; }
   .subnav ul::-webkit-scrollbar { display:none; }
   .subnav .strong { font-weight:700; padding-right:22px; border-right:1px solid var(--line); }
@@ -44,9 +45,13 @@
   .listen { display:flex; align-items:center; gap:12px; font-size:13px; color:#121212; }
   .circle { width:36px; height:36px; border:1px solid var(--line); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#fff; }
   .tools-right { display:flex; gap:7px; align-items:center; }
-  .pill { height:36px; border:1px solid var(--line); border-radius:18px; padding:0 12px; display:inline-flex; align-items:center; gap:7px; font-size:13px; background:#fff; }
+  .pill { font-family:"Franklin", Arial, sans-serif; color:#121212; height:36px; border:1px solid var(--line); border-radius:18px; padding:0 14px 0 11px; display:inline-flex; align-items:center; gap:7px; font-size:13px; background:#fff; }
   .ico { width:20px; height:20px; flex:none; fill:none; stroke:#121212; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; display:block; }
-  .ico.top { width:28px; height:28px; stroke-width:2; }
+  .pill .ico, .circle .ico { width:22px; height:22px; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; }
+  .pill, .circle { transition:background-color .15s; }
+  .pill:hover, .circle:hover { background:#ebebeb; }
+  .ico.top { width:20px; height:20px; stroke-width:2.4; }
+  .ico.sm { width:16px; height:16px; }
 
   /* Hero */
   .hero { max-width:1000px; margin:30px auto 0; padding:0 20px; }
@@ -81,8 +86,66 @@
   .credits a { font-weight:700; text-decoration:underline; text-underline-offset:3px; }
   .seemore { font-family:"Franklin", Arial, sans-serif; font-size:15px; border-top:1px solid var(--line); padding-top:22px; margin-top:28px; line-height:1.6; }
   .seemore a { text-decoration:underline; text-underline-offset:2px; }
-  .comment-btn { display:block; width:100%; margin:26px 0 0; background:#567b95; border:1px solid #326891; border-radius:3px; color:#fff; text-align:center; font-family:"Franklin", Arial, sans-serif; font-weight:700; font-size:13px; letter-spacing:.04em; height:36px; line-height:34px; padding:0; }
+  .comment-btn { display:block; width:100%; margin:26px 0 0; background:#3e586f; border:1px solid #2f4559; cursor:pointer; border-radius:3px; color:#fff; text-align:center; font-family:"Franklin", Arial, sans-serif; font-weight:700; font-size:13px; letter-spacing:.04em; height:36px; line-height:34px; padding:0; }
   .bottom-tools { display:flex; gap:8px; margin:24px 0 60px; }
+
+  /* Link hover: underlined at rest, no underline on hover (like nytimes.com) */
+  .body a.in, .box a, .credits a, .seemore a, .byline-name a, .preferred a, .dr-guidelines { text-decoration:underline; text-underline-offset:3px; }
+  .body a.in:hover, .box a:hover, .credits a:hover, .seemore a:hover, .byline-name a:hover, .preferred a:hover, .dr-guidelines:hover { text-decoration:none; }
+
+  /* Editors' Picks */
+  .body { position:relative; }
+  .aside { margin:40px 0 0; font-family:"Franklin", Arial, sans-serif; }
+  .aside h3 { font-size:15px; font-weight:700; margin:0; padding-bottom:12px; border-bottom:1px solid var(--line); color:#121212; }
+  .aside a.ep { display:flex; gap:14px; align-items:center; margin-top:20px; }
+  .aside img { width:68px; height:68px; object-fit:cover; flex:none; background:#eee; display:block; }
+  .aside span { font-family:"Imperial", Georgia, serif; font-size:16px; line-height:1.25; color:#121212; }
+  @media (min-width:1180px) { .aside { position:absolute; left:calc(100% + 30px); width:190px; top:900px; margin:0; } }
+
+  /* Comments drawer */
+  .overlay { position:fixed; inset:0; background:rgba(0,0,0,.4); opacity:0; visibility:hidden; transition:opacity .3s, visibility 0s .3s; z-index:90; }
+  .overlay.open { opacity:1; visibility:visible; transition:opacity .3s; }
+  .drawer { position:fixed; top:0; right:0; height:100%; width:520px; max-width:100vw; background:#fff; z-index:100; transform:translateX(100%); visibility:hidden; transition:transform .35s cubic-bezier(.22,.8,.3,1), visibility 0s .35s; font-family:"Franklin", Arial, sans-serif; color:#121212; }
+  .drawer.open { transform:none; visibility:visible; transition:transform .35s cubic-bezier(.22,.8,.3,1); box-shadow:-6px 0 24px rgba(0,0,0,.15); }
+  .dr-scroll { height:100%; overflow-y:auto; }
+  .drawer .ico { stroke:#6b6b6b; }
+  .dr-close { position:absolute; top:24px; right:28px; z-index:5; background:none; border:0; padding:4px; }
+  .dr-close .ico { stroke:#121212; stroke-width:2.4; width:22px; height:22px; }
+  .dr-top { background:#f7f7f7; height:76px; display:flex; align-items:center; padding:0 40px; gap:10px; font-size:14px; }
+  .dr-top img { height:18px; width:auto; }
+  .dr-top .ico { width:14px; height:14px; }
+  .dr-top .conv { position:relative; padding-top:10px; }
+  .dr-top .conv i { position:absolute; top:-3px; left:0; font-style:normal; font-size:10px; font-weight:700; color:#326891; letter-spacing:.02em; }
+  .dr-top .cur { color:#727272; }
+  .dr-title { padding:26px 40px 0; font-size:20px; line-height:1.25; }
+  .dr-title b { font-weight:700; }
+  .dr-input-row { display:flex; gap:10px; margin:16px 40px 0; }
+  .dr-input { cursor:text; flex:1; height:34px; border:1px solid var(--line); border-radius:17px; padding:0 16px; display:flex; align-items:center; color:#727272; font-size:15px; }
+  .dr-input-row .circle { width:34px; height:34px; }
+  .dr-input-row .ico { stroke:#121212; width:18px; height:18px; }
+  .dr-filters { display:flex; gap:8px; padding:20px 40px 20px; border-bottom:1px solid var(--line); }
+  .dr-filters button, .dr-compact button { height:32px; padding:0 13px; border:1px solid var(--line); border-radius:16px; background:#fff; font-family:inherit; font-size:14px; color:#121212; cursor:pointer; }
+  .dr-filters button.on, .dr-compact button.on { background:#121212; color:#fff; border-color:#121212; }
+  .dr-compact { position:absolute; top:0; left:0; right:0; height:64px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:8px; padding:0 40px; z-index:4; transform:translateY(-100%); transition:transform .2s; }
+  .dr-compact.show { transform:none; }
+  .dr-welcome { padding:22px 40px 0; font-size:15px; line-height:1.45; color:#5a5a5a; }
+  .dr-sort { display:flex; justify-content:flex-end; align-items:center; gap:4px; padding:18px 40px 4px; font-size:14px; color:#5a5a5a; }
+  .dr-list { padding:0 40px 60px; }
+  .cm { padding:20px 0 16px; border-bottom:1px solid #e6e6e6; }
+  .cm-head { display:flex; gap:12px; align-items:center; }
+  .av { width:36px; height:36px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; font-family:"Karnak", Georgia, serif; font-weight:700; font-size:17px; color:#121212; }
+  .cm-name { font-size:15px; font-weight:700; line-height:1.2; }
+  .cm-meta { font-size:14px; color:#5a5a5a; line-height:1.3; }
+  .cm-text { font-size:16px; line-height:1.5; margin:10px 0 10px; color:#121212; }
+  .cm-act { display:flex; align-items:center; gap:18px; font-size:14px; color:#5a5a5a; }
+  .cm-act b { color:#121212; font-weight:700; margin-right:5px; }
+  .cm-act .sp { flex:1; }
+  .cm-act a { display:inline-flex; align-items:center; }
+  .cm-act .ico { width:20px; height:20px; }
+  .rp { margin-top:16px; padding-left:16px; border-left:3px solid #f1c2b3; }
+  .rp .cm-text { margin-top:8px; }
+  body.lock { overflow:hidden; }
+  @media (max-width:560px) { .dr-top, .dr-title, .dr-welcome, .dr-sort, .dr-list, .dr-compact, .dr-filters { padding-left:20px; padding-right:20px; } .dr-input-row { margin-left:20px; margin-right:20px; } }
 
   /* Footer */
   .footer { max-width:1280px; margin:0 auto; padding:0 24px 40px; }
@@ -99,10 +162,10 @@
   .footer-legal { display:flex; flex-wrap:wrap; gap:14px 34px; padding-top:18px; font-size:13px; color:#555; }
 
   @media (max-width:800px) {
-    .topbar { padding:0 14px; height:60px; }
+    .topbar { padding:0 14px; height:42px; }
     .topbar-left { gap:16px; }
-    .ico.top { width:24px; height:24px; }
-    .logotype img { height:30px; }
+    .ico.top { width:20px; height:20px; }
+    .logotype img { height:20px; }
     .topbar .btn-dark { display:none; }
     .subnav { padding:0 14px; }
     .subnav ul { padding-left:48px; }
@@ -124,10 +187,14 @@
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 6h17M3.5 12h17M3.5 18h17"/></symbol>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5l5 5"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="#121212"/></symbol>
-    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="4"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5C10.5 5 7 5 7 7s3 1.5 5 1.5zM12 8.5C13.5 5 17 5 17 7s-3 1.5-5 1.5z"/></symbol>
-    <symbol id="i-share" viewBox="0 0 24 24"><path d="M20.5 11.5l-6-6V9C8 9 4 12.5 3.5 19c2.5-3.5 6-5 11-5v3.5z"/></symbol>
-    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17L12 16l-5.5 4.5z"/></symbol>
-    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M4.5 4.5h15v11H10l-5 4v-4h-.5z"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="2.5" y="7.5" width="19" height="4"/><path d="M4 11.5v10h16v-10M12 7.5v14M12 7.5C10 3 6 3.5 7 6s5 1.5 5 1.5zM12 7.5C14 3 18 3.5 17 6s-5 1.5-5 1.5z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M21 11.5l-7-7v4C7 8.5 3 12.5 2.5 20c3-4.5 6.5-6 11.5-6v4z"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M5.5 2.5h13v19l-6.5-5-6.5 5z"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M2.5 3.5h19v14H9.5L4 22v-4.5H2.5z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><g fill="#6b6b6b" stroke="none"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></g></symbol>
   </defs>
 </svg>
 
@@ -200,7 +267,7 @@
 
 <!-- ARTICLE BODY -->
 <article class="body">
-  <p>For years, John Milas had managed to do what millions of others could not. He had remained unaware, or perhaps simply undisturbed, by the <a class="in" href="https://rickroll.it" target="_blank" rel="noopener">invisible competition</a> unfolding around him. But on <span data-day>Tuesday</span>, that streak came to an abrupt end.</p>
+  <p>John Milas had last lost just three days earlier, and since then he had managed, for a whopping total of three days, to do what millions of others could not. He had remained unaware, or perhaps simply undisturbed, by the <a class="in" href="https://rickroll.it" target="_blank" rel="noopener">invisible competition</a> unfolding around him. But on <span data-day>Tuesday</span>, that streak came to an abrupt end.</p>
 
   <p>John Milas lost The Game.</p>
 
@@ -216,7 +283,7 @@
 
   <p>Friends described Mr. Milas as an otherwise ordinary member of the community, whose loss has raised difficult questions about the nature of the competition and whether anyone can truly be considered safe.</p>
 
-  <p>“I’m devastated, honestly,” said Finn King, a close friend of Mr. Milas’s since middle school. “John was one of my best friends. He’d gone, like, nine years without losing. I really thought he was going to make it.”</p>
+  <p>“I’m devastated, honestly,” said Finn King, a close friend of Mr. Milas’s since middle school. “John was one of my best friends. He’d lost literally three days ago, so he was on a streak of, like, three days. But I really thought he was going to make it.”</p>
 
   <p>Mr. King said he found out by text. “I was just sitting on my couch and my phone buzzed,” he said. “And then I lost too, obviously. That’s the worst part. I went down with him.”</p>
 
@@ -243,15 +310,23 @@
   <p class="credits"><a href="https://rickroll.it" target="_blank" rel="noopener">Nalin Singh</a> contributed reporting from Chapel Hill.</p>
   <p class="credits"><a href="https://rickroll.it" target="_blank" rel="noopener">Owen Russell</a> is a writer-at-large for The Smith Chronicle, focused on community life in America and how Americans see the changes in their neighborhoods.</p>
 
+  <aside class="aside" aria-label="Editors’ Picks">
+    <h3>Editors’ Picks</h3>
+    <!-- EDIT THE THREE HEADLINES BELOW. Images: editors1.png, editors2.png, editors3.png -->
+    <a class="ep" href="https://rickroll.it" target="_blank" rel="noopener"><img src="editors1.png" alt=""><span>36 Hours in Chapel Hill, N.C.</span></a>
+    <a class="ep" href="https://rickroll.it" target="_blank" rel="noopener"><img src="editors2.png" alt=""><span>How to Host Thanksgiving Without Losing It</span></a>
+    <a class="ep" href="https://rickroll.it" target="_blank" rel="noopener"><img src="editors3.png" alt=""><span>Our Favorite Cozy Sweaters for Fall</span></a>
+  </aside>
+
   <div class="seemore">See more on: <a href="https://rickroll.it" target="_blank" rel="noopener">The Game</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">Chapel Hill</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">John Milas</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">Community</a></div>
 
-  <a class="comment-btn" href="https://rickroll.it" target="_blank" rel="noopener">ADD A COMMENT</a>
+  <button class="comment-btn" type="button" data-open-comments>READ <span data-count>17</span> COMMENTS</button>
 
   <div class="bottom-tools">
     <a class="pill" href="https://rickroll.it" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-gift"/></svg><span>Share full article</span></a>
     <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Share"><svg class="ico" viewBox="0 0 24 24"><use href="#i-share"/></svg></a>
     <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Save"><svg class="ico" viewBox="0 0 24 24"><use href="#i-bookmark"/></svg></a>
-    <a class="pill" href="https://rickroll.it" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-comment"/></svg>0</a>
+    <button class="pill" type="button" data-open-comments><svg class="ico" viewBox="0 0 24 24"><use href="#i-comment"/></svg><span data-count>17</span></button>
   </div>
 </article>
 
@@ -307,6 +382,110 @@
     document.querySelectorAll("[data-date]").forEach(function (el) { el.textContent = fmt; });
     document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = d.getFullYear(); });
   })();
+</script>
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Comments">
+  <div class="dr-compact" id="drCompact">
+    <button type="button" data-filter="picks">Reader Picks</button>
+    <button type="button" class="on" data-filter="all">All</button>
+  </div>
+  <button class="dr-close" id="drClose" type="button" aria-label="Close"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+  <div class="dr-scroll" id="drScroll">
+    <div class="dr-top">
+      <img src="logo.png" alt="">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg>
+      <span class="conv"><i>NEW</i>Conversations</span>
+      <svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg>
+      <span class="cur">Comments</span>
+    </div>
+    <div class="dr-title"><b><span data-count>17</span> comments on</b> A Community in Mourning After Local Man Loses ‘The Game’</div>
+    <div class="dr-input-row">
+      <a class="dr-input" href="https://rickroll.it" target="_blank" rel="noopener">Share your thoughts…</a>
+      <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Search comments"><svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg></a>
+    </div>
+    <div class="dr-filters">
+      <button type="button" data-filter="picks">Reader Picks</button>
+      <button type="button" class="on" data-filter="all">All</button>
+    </div>
+    <div class="dr-welcome">Welcome to the comments section. We moderate every submission according to our <a class="dr-guidelines" href="https://rickroll.it" target="_blank" rel="noopener">guidelines</a>.</div>
+    <div class="dr-sort">Sort by: Newest <svg class="ico sm" viewBox="0 0 24 24"><use href="#i-down"/></svg></div>
+    <div class="dr-list" id="drList"></div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  var COLORS = ["#b9cbc1","#e8cfa3","#f1c2b3","#ede5d3","#f6bcc2","#c9d6e8","#d7c8e6","#cfe3d3"];
+  // EDIT COMMENTS HERE: n = name, l = location, t = time, c = text, r = recommends, pick = Reader Pick, re = replies
+  var COMMENTS = [
+    {n:"PGP", l:"USA", t:"Just now", r:1, c:"A streak with a whopping total of three days?? Come on. He lost THREE DAYS AGO. You cant tell me his friends didn’t think about it once in 3 days. I think the real question is who got to him first, and why is nobody asking."},
+    {n:"Ariel", l:"Nyc", t:"4m ago", r:3, c:"Wait so you cant opt out, theres no one in charge, and you can’t win. Honestly how is this different from my HOA."},
+    {n:"Conklin5", l:"Indy", t:"19m ago", r:8, pick:1, c:"This is all completely normal. When I was in college (class of ’94) you lost maybe once a month and it was no big deal, you’d groan and move on. Now everyone has a phone and a group chat and it spreads in about 4 seconds. Its not the game thats changed, its the technology. Back then we had to actually tell people to their faces.",
+      re:[{n:"BHVbum", l:"Virginia", t:"7m ago", r:0, c:"thanks for that. I was on day 412"}]},
+    {n:"TW", l:"Alabama", t:"19m ago", r:12, c:"Finn King says he lost too, “obviously.” Thats the part that got me. Think about that for a second. One text and a whole friend group is gone. Nobody is in charge of this thing, nobody is watching it, and we all just go along. And then someone says well its fine, its just a game. Is it though?"},
+    {n:"Maya R", l:"Durham, NC", t:"24m ago", r:14, c:"Im in Chapel Hill and can confirm the mood today is not great. Was at the coffee shop on Franklin this morning and three people in line lost at once, nobody said anything, it was just quiet. Remember when this stuff used to bring people together? Now everyone just stares at their phone."},
+    {n:"Dave from Cleveland", l:"Ohio", t:"31m ago", r:47, c:"I had gone six years. SIX. I want to know who at this paper thought it was ok to run this with no warning. I’m not canceling my subscription but I want it known I am very upset. Also the crossword was harder today.",
+      re:[{n:"Bobby D", l:"Pittsburgh", t:"20m ago", r:2, c:"6 years? lucky."}]},
+    {n:"Priya", l:"Raleigh", t:"33m ago", r:22, pick:1, c:"Finn King’s quote, “I went down with him,” got me. Nobody ever loses alone, thats the whole thing about this game. Its like a cold, somebody gets it and then everyone has it and you all just sit around being sad about it.",
+      re:[{n:"Tom_B", l:"Boston", t:"30m ago", r:5, c:"Same. Somebody check on Finn."}]},
+    {n:"Retired Teacher", l:"Vermont", t:"41m ago", r:31, pick:1, c:"I have been losing The Game since 1996 and nobody has ever written an article about me. Where was the community then?"},
+    {n:"Marcus", l:"Atlanta", t:"45m ago", r:64, c:"The real tragedy is every single person reading this is now also in mourning, which means the Smith Chronicle has probably made more people lose in one article than anyone in history. Did anyone there even think about that before hitting publish? I doubt it.",
+      re:[{n:"Linda K", l:"Phoenix", t:"44m ago", r:9, c:"I was fine until I read your comment."}]},
+    {n:"Sam O.", l:"Brooklyn", t:"52m ago", r:18, c:"Im a retired statistician so bear with me. A streak of three days, which is exactly how long it has been since his last loss, is not exactly a data set. The sample size is tiny. I dont know why this is front page news, and the article never says whether John was counting the days or his friends were doing it for him, which would honestly be the better story."},
+    {n:"Greta", l:"Minneapolis", t:"58m ago", r:6, c:"Ive been teaching high school for 20 years and I can tell you the kids lose every 40 minutes or so and they dont even blink. A three day streak would make you a legend in my building. Honestly I think this article is a little dramatic, its a game people, he’ll be ok."},
+    {n:"J. Whitfield", l:"Texas", t:"1h ago", r:40, pick:1, c:"My thoughts are with John, Finn, and everyone else who just lost. So everyone. I wrote a letter about this in 2019 and nobody printed it."},
+    {n:"Beth_in_Maine", l:"Maine", t:"1h ago", r:15, c:"Who is going to tell my grandmother? She hasn’t lost since 2003."}
+  ];
+  var share = '<a href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Share"><svg class="ico" viewBox="0 0 24 24"><use href="#i-share"/></svg></a><a href="https://rickroll.it" target="_blank" rel="noopener" aria-label="More"><svg class="ico" viewBox="0 0 24 24"><use href="#i-more"/></svg></a>';
+  function one(x, color, isReply) {
+    var rec = x.r ? '<b>' + x.r + '</b>Recommend' : 'Recommend';
+    return '<div class="' + (isReply ? 'rp' : 'cm') + '"' + (isReply ? ' style="border-left-color:' + color + '"' : '') + '>' +
+      '<div class="cm-head"><div class="av" style="background:' + color + '">' + x.n.charAt(0).toUpperCase() + '</div>' +
+      '<div><div class="cm-name">' + x.n + '</div><div class="cm-meta">' + x.l + ' · ' + x.t + '</div></div></div>' +
+      '<div class="cm-text">' + x.c + '</div>' +
+      '<div class="cm-act"><a href="https://rickroll.it" target="_blank" rel="noopener">' + rec + '</a>' +
+      '<a href="https://rickroll.it" target="_blank" rel="noopener">Reply</a><span class="sp"></span>' + share + '</div>';
+  }
+  var total = 0;
+  COMMENTS.forEach(function (c) { total += 1 + (c.re ? c.re.length : 0); });
+  document.querySelectorAll("[data-count]").forEach(function (el) { el.textContent = total; });
+
+  var list = document.getElementById("drList");
+  function render(filter) {
+    var html = "";
+    var order = COMMENTS.map(function (c, i) { return i; });
+    if (filter === "picks") {
+      // Reader Picks = the 5 most-recommended comments, most recommends first
+      order.sort(function (a, b) { return COMMENTS[b].r - COMMENTS[a].r; });
+      order = order.slice(0, 5);
+    }
+    order.forEach(function (i) {
+      var c = COMMENTS[i];
+      var out = one(c, COLORS[i % COLORS.length], false);
+      (c.re || []).forEach(function (r, j) { out += one(r, COLORS[(i + j + 2) % COLORS.length], true) + '</div>'; });
+      html += out + '</div>';
+    });
+    list.innerHTML = html;
+  }
+  render("all");
+
+  var drawer = document.getElementById("drawer"), overlay = document.getElementById("overlay");
+  var scroller = document.getElementById("drScroll"), compact = document.getElementById("drCompact");
+  function open() { overlay.classList.add("open"); drawer.classList.add("open"); document.body.classList.add("lock"); }
+  function close() { overlay.classList.remove("open"); drawer.classList.remove("open"); document.body.classList.remove("lock"); }
+  document.querySelectorAll("[data-open-comments]").forEach(function (b) { b.addEventListener("click", open); });
+  document.getElementById("drClose").addEventListener("click", close);
+  overlay.addEventListener("click", close);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  scroller.addEventListener("scroll", function () { compact.classList.toggle("show", scroller.scrollTop > 220); });
+  document.querySelectorAll("[data-filter]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = b.getAttribute("data-filter");
+      document.querySelectorAll("[data-filter]").forEach(function (x) { x.classList.toggle("on", x.getAttribute("data-filter") === f); });
+      render(f); scroller.scrollTop = 0;
+    });
+  });
+})();
 </script>
 </body>
 </html>
