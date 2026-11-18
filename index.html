@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<title>A Community in Mourning After Local Man Loses ‘The Game’ - The Smith Chronicle</title>
+<style>
+  @font-face { font-family: "Cheltenham"; src: url("cheltenham.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Cheltenham"; src: url("cheltenham.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Imperial"; src: url("imperial-normal-500.ttf") format("truetype"); font-weight: 400 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Franklin"; src: url("franklin-normal-500.ttf") format("truetype"); font-weight: 400 700; font-style: normal; font-display: swap; }
+
+  :root { --ink:#121212; --body:#363636; --grey:#727272; --line:#dfdfdf; --link:#326891; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#fff; color:var(--ink); font-family:"Franklin", Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  button { font:inherit; cursor:pointer; }
+  .serif { font-family:"Imperial", Georgia, serif; }
+
+  /* Top bar */
+  .topbar { position:relative; height:81px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 24px; }
+  .topbar-left { display:flex; gap:30px; align-items:center; }
+  .logotype { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+  .logotype img { display:block; height:50px; width:auto; max-width:60vw; }
+  .topbar-right { display:flex; gap:16px; }
+  .btn-dark { background:#121212; color:#fff; font-weight:700; font-size:15px; padding:0 26px; height:64px; border-radius:3px; display:flex; align-items:center; }
+  .btn-light { background:#fff; color:#121212; font-weight:700; font-size:15px; padding:0 24px; height:64px; border:1px solid #121212; border-radius:3px; display:flex; align-items:center; }
+  .topbar .btn-dark, .topbar .btn-light { height:32px; font-size:14px; padding:0 14px; }
+
+  /* Sub nav */
+  .subnav { height:56px; border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 24px; position:relative; }
+  .subnav .t-logo { height:27px; width:auto; position:absolute; left:24px; top:50%; transform:translateY(-50%); }
+  .subnav ul { list-style:none; margin:0 auto; padding:0 0 0 60px; display:flex; gap:22px; align-items:center; font-size:14px; white-space:nowrap; overflow-x:auto; max-width:100%; }
+  .subnav ul::-webkit-scrollbar { display:none; }
+  .subnav .strong { font-weight:700; padding-right:22px; border-right:1px solid var(--line); }
+
+  /* Article header */
+  .headline-wrap { max-width:600px; margin:70px auto 0; padding:0 20px; }
+  h1 { font-family:"Cheltenham", Georgia, serif; font-style:italic; font-weight:700; font-size:40px; line-height:1.15; letter-spacing:-.005em; margin:0 0 14px; }
+  .dek { font-family:"Imperial", Georgia, serif; font-size:21px; line-height:1.45; color:#363636; margin:0 0 28px; }
+  .tools { border-top:1px solid var(--line); padding-top:20px; display:flex; align-items:center; justify-content:space-between; }
+  .listen { display:flex; align-items:center; gap:12px; font-size:13px; color:#121212; }
+  .circle { width:36px; height:36px; border:1px solid var(--line); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#fff; }
+  .tools-right { display:flex; gap:7px; align-items:center; }
+  .pill { height:36px; border:1px solid var(--line); border-radius:18px; padding:0 12px; display:inline-flex; align-items:center; gap:7px; font-size:13px; background:#fff; }
+  .ico { width:20px; height:20px; flex:none; fill:none; stroke:#121212; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; display:block; }
+  .ico.top { width:28px; height:28px; stroke-width:2; }
+
+  /* Hero */
+  .hero { max-width:1000px; margin:30px auto 0; padding:0 20px; }
+  .hero img { display:block; width:100%; height:auto; max-height:560px; object-fit:cover; }
+  .hero figcaption { max-width:600px; margin:12px 0 0; font-family:"Imperial", Georgia, serif; font-size:14px; line-height:1.4; color:var(--grey); }
+  .hero figcaption .credit { font-family:"Franklin", Arial, sans-serif; font-size:11px; color:var(--grey); margin-left:4px; }
+
+  /* Byline */
+  .byline-wrap { max-width:600px; margin:30px auto 0; padding:0 20px; }
+  .byline { display:flex; align-items:center; gap:12px; }
+  .byline img { width:50px; height:50px; border-radius:50%; object-fit:cover; filter:grayscale(100%); }
+  .byline-name { font-size:16px; font-weight:700; }
+  .byline-name a { text-decoration:underline; text-underline-offset:2px; }
+  .byline-loc { font-size:16px; color:#363636; margin-top:3px; }
+  .timestamp { font-size:13px; color:#363636; margin:18px 0 0; }
+  .rule { border:0; border-top:1px solid var(--line); margin:16px 0; }
+  .preferred { font-family:"Cheltenham", Georgia, serif; font-weight:700; font-style:normal; font-size:18px; line-height:1.4; }
+  .preferred a { font-weight:400; font-family:"Imperial", Georgia, serif; text-decoration:underline; text-underline-offset:3px; text-decoration-color:#bbb; }
+
+  /* Body */
+  .body { max-width:600px; margin:24px auto 0; padding:0 20px; font-family:"Imperial", Georgia, serif; font-size:20px; line-height:1.5; color:var(--body); }
+  .body p { margin:0 0 20px; }
+  .body a.in { color:var(--link); text-decoration:underline; text-underline-offset:3px; }
+  .body h2 { font-family:"Cheltenham", Georgia, serif; font-weight:700; font-style:normal; font-size:28px; line-height:1.2; color:#121212; margin:34px 0 18px; }
+  .body blockquote { margin:0 0 20px; padding:0; font-size:inherit; line-height:inherit; }
+  .box { border:1px solid var(--line); padding:20px 22px; margin:30px 0; font-size:17px; line-height:1.5; }
+  .box b { font-family:"Franklin", Arial, sans-serif; font-weight:700; }
+  .box a { color:var(--link); text-decoration:underline; text-underline-offset:3px; }
+  .inline-img { margin:28px -20px; }
+  .inline-img img { display:block; width:100%; height:auto; }
+  .credits { font-family:"Franklin", Arial, sans-serif; font-size:16px; line-height:1.5; color:var(--body); }
+  .credits a { font-weight:700; text-decoration:underline; text-underline-offset:3px; }
+  .seemore { font-family:"Franklin", Arial, sans-serif; font-size:15px; border-top:1px solid var(--line); padding-top:22px; margin-top:28px; line-height:1.6; }
+  .seemore a { text-decoration:underline; text-underline-offset:2px; }
+  .comment-btn { display:block; width:100%; margin:26px 0 0; background:#567b95; border:1px solid #326891; border-radius:3px; color:#fff; text-align:center; font-family:"Franklin", Arial, sans-serif; font-weight:700; font-size:13px; letter-spacing:.04em; height:36px; line-height:34px; padding:0; }
+  .bottom-tools { display:flex; gap:8px; margin:24px 0 60px; }
+
+  /* Footer */
+  .footer { max-width:1280px; margin:0 auto; padding:0 24px 40px; }
+  .footer-top { border-top:3px double #ddd; padding-top:18px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .footer-top img { height:40px; width:auto; }
+  .footer-top a.home { font-size:12px; color:#326891; margin-top:14px; }
+  .footer-cols { display:grid; grid-template-columns:repeat(6,1fr); gap:22px; margin-top:30px; padding-bottom:24px; border-bottom:1px solid var(--line); }
+  .footer-cols h4 { margin:0 0 14px; font-size:13px; letter-spacing:.02em; font-weight:700; text-transform:uppercase; }
+  .footer-cols ul { list-style:none; padding:0; margin:0; }
+  .footer-cols li { margin-bottom:11px; font-size:14px; }
+  .footer-cols .acct li { font-weight:700; font-size:16px; margin-bottom:16px; }
+  .footer-cols .acct li.small { font-weight:400; font-size:12px; margin-bottom:12px; }
+  .footer-cols .acct { border-left:1px solid var(--line); padding-left:22px; }
+  .footer-legal { display:flex; flex-wrap:wrap; gap:14px 34px; padding-top:18px; font-size:13px; color:#555; }
+
+  @media (max-width:800px) {
+    .topbar { padding:0 14px; height:60px; }
+    .topbar-left { gap:16px; }
+    .ico.top { width:24px; height:24px; }
+    .logotype img { height:30px; }
+    .topbar .btn-dark { display:none; }
+    .subnav { padding:0 14px; }
+    .subnav ul { padding-left:48px; }
+    .headline-wrap { margin-top:34px; }
+    h1 { font-size:32px; }
+    .dek { font-size:19px; }
+    .hero { padding:0; margin-top:22px; }
+    .hero figcaption { padding:0 20px; }
+    .body { font-size:19px; }
+    .footer-cols { grid-template-columns:repeat(2,1fr); }
+    .footer-cols .acct { border-left:0; padding-left:0; }
+    .tools .pill span { display:none; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 6h17M3.5 12h17M3.5 18h17"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5l5 5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="#121212"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="4"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5C10.5 5 7 5 7 7s3 1.5 5 1.5zM12 8.5C13.5 5 17 5 17 7s-3 1.5-5 1.5z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M20.5 11.5l-6-6V9C8 9 4 12.5 3.5 19c2.5-3.5 6-5 11-5v3.5z"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17L12 16l-5.5 4.5z"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M4.5 4.5h15v11H10l-5 4v-4h-.5z"/></symbol>
+  </defs>
+</svg>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <a href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Menu"><svg class="ico top" viewBox="0 0 24 24"><use href="#i-menu"/></svg></a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Search"><svg class="ico top" viewBox="0 0 24 24"><use href="#i-search"/></svg></a>
+  </div>
+  <a class="logotype" href="https://rickroll.it" target="_blank" rel="noopener"><img src="logotype.png" alt="The Smith Chronicle"></a>
+  <div class="topbar-right">
+    <a class="btn-dark" href="https://rickroll.it" target="_blank" rel="noopener">Download the app</a>
+    <a class="btn-light" href="https://rickroll.it" target="_blank" rel="noopener">Account</a>
+  </div>
+</header>
+
+<!-- SUB NAV -->
+<nav class="subnav" aria-label="Section">
+  <a href="https://rickroll.it" target="_blank" rel="noopener"><img class="t-logo" src="logo.png" alt="The Smith Chronicle"></a>
+  <ul>
+    <li class="strong"><a href="https://rickroll.it" target="_blank" rel="noopener">Local Man Loses ‘The Game’</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">Updates</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">What to Know</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">Photos</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">Community Reactions</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">Rules of The Game</a></li>
+    <li><a href="https://rickroll.it" target="_blank" rel="noopener">Who Else Has Lost?</a></li>
+  </ul>
+</nav>
+
+<!-- HEADLINE -->
+<section class="headline-wrap">
+  <h1>A Community in Mourning After Local Man Loses ‘The Game’</h1>
+  <p class="dek">John Milas’s defeat has sent shockwaves through the community, leaving friends, neighbors and fellow residents questioning what comes next.</p>
+  <div class="tools">
+    <div class="listen">
+      <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Listen"><svg class="ico" viewBox="0 0 24 24"><use href="#i-play"/></svg></a>
+      <a href="https://rickroll.it" target="_blank" rel="noopener">Listen · 1:17 min</a>
+    </div>
+    <div class="tools-right">
+      <a class="pill" href="https://rickroll.it" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-gift"/></svg><span>Share full article</span></a>
+      <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Share"><svg class="ico" viewBox="0 0 24 24"><use href="#i-share"/></svg></a>
+      <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Save"><svg class="ico" viewBox="0 0 24 24"><use href="#i-bookmark"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- HERO (full color) -->
+<figure class="hero">
+  <img src="heroimage.png" alt="A memorial table with framed photos, candles and a stone reading “in loving memory”">
+  <figcaption>A memorial table in Chapel Hill on <span data-day>Tuesday</span> for John Milas, whose loss has left friends and neighbors searching for answers. <span class="credit">Owen Russell for The Smith Chronicle</span></figcaption>
+</figure>
+
+<!-- BYLINE -->
+<section class="byline-wrap">
+  <div class="byline">
+    <img src="author.png" alt="Owen Russell">
+    <div>
+      <div class="byline-name">By <a href="https://rickroll.it" target="_blank" rel="noopener">Owen Russell</a></div>
+      <div class="byline-loc">Reporting from Chapel Hill, N.C.</div>
+    </div>
+  </div>
+  <p class="timestamp"><span data-date>Nov. 17, 2026</span>, 7:42 a.m. ET</p>
+  <hr class="rule">
+  <div class="preferred">See more of our coverage in your search results.<br>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Add The Smith Chronicle as a preferred source on Google ›</a>
+  </div>
+  <hr class="rule" style="margin-bottom:0">
+</section>
+
+<!-- ARTICLE BODY -->
+<article class="body">
+  <p>For years, John Milas had managed to do what millions of others could not. He had remained unaware, or perhaps simply undisturbed, by the <a class="in" href="https://rickroll.it" target="_blank" rel="noopener">invisible competition</a> unfolding around him. But on <span data-day>Tuesday</span>, that streak came to an abrupt end.</p>
+
+  <p>John Milas lost The Game.</p>
+
+  <p>The circumstances surrounding the loss remain unclear, though witnesses say the news spread quickly throughout the local community. What began as an ordinary day soon became a moment of collective devastation, as friends and acquaintances came to terms with the reality that another member of their community had fallen.</p>
+
+  <p>For those unfamiliar with The Game, the rules are deceptively simple: thinking about The Game means losing The Game. Everyone is required to participate, cannot officially withdraw, and is generally unable to avoid losing indefinitely. The only consolation is that announcing one’s loss forces others to lose as well.</p>
+
+  <p>It is a system that has quietly affected countless lives, often without warning.</p>
+
+  <p>Here’s what is known about the loss as the community takes stock:</p>
+
+  <h2>A Neighbor Remembered</h2>
+
+  <p>Friends described Mr. Milas as an otherwise ordinary member of the community, whose loss has raised difficult questions about the nature of the competition and whether anyone can truly be considered safe.</p>
+
+  <p>“I’m devastated, honestly,” said Finn King, a close friend of Mr. Milas’s since middle school. “John was one of my best friends. He’d gone, like, nine years without losing. I really thought he was going to make it.”</p>
+
+  <p>Mr. King said he found out by text. “I was just sitting on my couch and my phone buzzed,” he said. “And then I lost too, obviously. That’s the worst part. I went down with him.”</p>
+
+  <p>Others expressed frustration that the incident could have been prevented, while acknowledging that the rules leave little room for <a class="in" href="https://rickroll.it" target="_blank" rel="noopener">intervention</a>.</p>
+
+  <div class="box"><b>Want to stay updated on what’s happening in your community?</b> <a href="https://rickroll.it" target="_blank" rel="noopener">Sign up for Your Places: Local Update</a>, and we’ll send our latest coverage to your inbox.</div>
+
+  <h2>A Chain Reaction</h2>
+
+  <p>By <span data-day>Tuesday</span> afternoon, the effects of Mr. Milas’s loss had extended well beyond his immediate circle. Several residents reported experiencing losses of their own after hearing the news, creating what some have described as a chain reaction of unprecedented proportions.</p>
+
+  <p>Despite the widespread disappointment, the community has begun the difficult process of moving forward. Some have called for greater awareness of The Game, while others believe that discussing the incident only risks prolonging its consequences.</p>
+
+  <p>“I’m not mad at him,” Mr. King said. “I just keep thinking about it. I don’t really know what to do with myself right now.”</p>
+
+  <p>For now, there are few answers. Mr. Milas has lost, the community has suffered, and countless others have been unwillingly reminded of a competition they had spent years trying to forget.</p>
+
+  <div class="box"><b>Sign up for the Backstory newsletter.</b> Your inside look at the decision-making, tough calls and challenges behind Smith Chronicle journalism. <a href="https://rickroll.it" target="_blank" rel="noopener">Get it sent to your inbox.</a></div>
+
+  <p>There is, however, one certainty.</p>
+
+  <blockquote>“You just lost The Game.”</blockquote>
+
+  <p class="credits"><a href="https://rickroll.it" target="_blank" rel="noopener">Nalin Singh</a> contributed reporting from Chapel Hill.</p>
+  <p class="credits"><a href="https://rickroll.it" target="_blank" rel="noopener">Owen Russell</a> is a writer-at-large for The Smith Chronicle, focused on community life in America and how Americans see the changes in their neighborhoods.</p>
+
+  <div class="seemore">See more on: <a href="https://rickroll.it" target="_blank" rel="noopener">The Game</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">Chapel Hill</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">John Milas</a>, <a href="https://rickroll.it" target="_blank" rel="noopener">Community</a></div>
+
+  <a class="comment-btn" href="https://rickroll.it" target="_blank" rel="noopener">ADD A COMMENT</a>
+
+  <div class="bottom-tools">
+    <a class="pill" href="https://rickroll.it" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-gift"/></svg><span>Share full article</span></a>
+    <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Share"><svg class="ico" viewBox="0 0 24 24"><use href="#i-share"/></svg></a>
+    <a class="circle" href="https://rickroll.it" target="_blank" rel="noopener" aria-label="Save"><svg class="ico" viewBox="0 0 24 24"><use href="#i-bookmark"/></svg></a>
+    <a class="pill" href="https://rickroll.it" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-comment"/></svg>0</a>
+  </div>
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <a href="https://rickroll.it" target="_blank" rel="noopener"><img src="logotype.png" alt="The Smith Chronicle"></a>
+    <a class="home" href="https://rickroll.it" target="_blank" rel="noopener">Go to Home Page »</a>
+  </div>
+  <div class="footer-cols">
+    <div><h4>News</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Home Page</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">U.S.</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">World</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Politics</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">New York</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Education</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Sports</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Business</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Tech</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Science</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Weather</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">The Great Read</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Obituaries</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Headway</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Visual Investigations</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">The Magazine</a></li></ul></div>
+    <div><h4>Arts</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Book Review</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Best Sellers Book List</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Dance</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Movies</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Music</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Pop Culture</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Television</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Theater</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Visual Arts</a></li></ul></div>
+    <div><h4>Lifestyle</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Health</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Well</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Food</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Restaurant Reviews</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Love</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Travel</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Style</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Fashion</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Real Estate</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">T Magazine</a></li></ul></div>
+    <div><h4>Opinion</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Today's Opinion</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Columnists</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Editorials</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Guest Essays</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Op-Docs</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Letters</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Sunday Opinion</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Opinion Video</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Opinion Audio</a></li></ul></div>
+    <div><h4>More</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Audio</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Games</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Cooking</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Wirecutter</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">The Athletic</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Jobs</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Video</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Graphics</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Trending</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Live Events</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Corrections</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Times Insider</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">TimesMachine</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">The Learning Network</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">School of The Smith Chronicle</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">inEducation</a></li></ul></div>
+    <div class="acct"><h4>Account</h4><ul>
+      <li><a href="https://rickroll.it" target="_blank" rel="noopener">Subscribe</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Manage My Account</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Home Delivery</a></li><li><a href="https://rickroll.it" target="_blank" rel="noopener">Gift Subscriptions</a></li>
+      <li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Group Subscriptions</a></li><li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Gift Articles</a></li><li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Email Newsletters</a></li>
+      <li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Smith Chronicle Licensing</a></li><li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Replica Edition</a></li><li class="small"><a href="https://rickroll.it" target="_blank" rel="noopener">Times Store</a></li></ul></div>
+  </div>
+  <div class="footer-legal">
+    <span>© <span data-year>2026</span> The Smith Chronicle Company</span>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">SCCo</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Contact Us</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Accessibility</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Work with us</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Advertise</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">T Brand Studio</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Privacy Policy</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Cookie Policy</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Terms of Service</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Terms of Sale</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Site Map</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Help</a>
+    <a href="https://rickroll.it" target="_blank" rel="noopener">Subscriptions</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var d = new Date();
+    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var months = ["Jan.","Feb.","March","April","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."];
+    var fmt = months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    // For numeric style instead (e.g. 11/19/26), use:
+    // var fmt = (d.getMonth()+1) + "/" + d.getDate() + "/" + String(d.getFullYear()).slice(-2);
+    document.querySelectorAll("[data-day]").forEach(function (el) { el.textContent = days[d.getDay()]; });
+    document.querySelectorAll("[data-date]").forEach(function (el) { el.textContent = fmt; });
+    document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = d.getFullYear(); });
+  })();
+</script>
+</body>
+</html>
